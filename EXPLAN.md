@@ -1,4 +1,8 @@
-# "That's the Second Biggest Monkey Head I've Ever Seen!"
+# Using Pre-rendered Backgrounds with Godot 4.4.x and Blender 4.5
+
+This project presents a method of overlaying 3D Actors with a static pre-rendered background. Giving a similar effect to the early Resident Evil games. However, with this method we can go infront of and behind objects in a scene easily.
+
+#### <p align="center">"That's the Second Biggest Monkey Head I've Ever Seen!"</p>
 <table>
 <tr>
   <td>
@@ -10,7 +14,7 @@
 	</tr>
 </table>
 
-*The files available are for illustrative purposes only.*
+> *The files available are for illustrative purposes only.*
 
 ## Blender
 
