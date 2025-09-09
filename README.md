@@ -17,58 +17,57 @@ This project presents a method of overlaying 3D Actors with a static pre-rendere
 > *The files available are for illustrative purposes only.*
 
 <details>
-<summary><h2>Blender</h2></summary>
+	<summary><h2>Method</h2></summary>
+	<details>
+		<summary><h3><blockquote>Blender</blockquote></h3></summary>
+		<details>
+  			<summary><h4>Overview</h4></summary>
 
-<h3>Overview</h3>
-
-> - Create scene
-> - Render scene and save to file
-> - Export scene, with camera, to .glb (glTF 2.0)
-
-<details>
-<summary><h3>Procedure</h3></summary>
-
+- Create scene
+- Render scene and save to file
+- Export scene, with camera, to .glb (glTF 2.0)  
+		</details>
+		<details>
+  			<summary><h4>Procedure</h4></summary>
 Using Blender we create the set for our Scene and arrange a camera to view it with. We render this scene and save it, a .PNG should be fine, as this will be the Backdrop to our node in Godot. The Blender file, including the Camera data, must also be exported as .glTF 2.0 file for use in Godot. Finally, ensure the scene is saved for future reference.
-</details>
-</details>
+		</details>
+	</details>
+	<details>
+		<summary><h3><blockquote>Godot</blockquote></h3></summary>
+		<details>
+			<summary><h4>Overview</h4></summary>
 
-<details>
-<summary><h2>Godot</h2></summary>
-
-<h3>Overview</h3>
-
-> - Import external files
-> - Create scene with Node2D root node
-> - Add Sprite2D node
-> - Parent two SubViewports to the root
->   - Set their size to match the screen
-> - Add model to scene
->   - Separate components (Make Local)
->   - Attach Collision data (StaticBody3D) to Actors
->   - Move the Mesh (MeshInstance3D) data to the Stage
-> - Create Camera2D and parent to root
->   - Set Anchor Mode to Fixed Top Left 
->   - Add TextureRect as child
->   - Set TextureRect to ViewportTexture
->   - Point the ViewportTexture to the Actors Subviewport
-> - Attach a MeshInstance3D to one of the 3D cameras
->   - Make a new QuadMesh, set size to 2m
->   - Make a new Shader Material
->   - To Stage/Camera/Aperture create and code the Translate_Depth.gdshader
->   - To Actors/Camera/Aperture create and code the Scene_Compositor.gdshader
-> - Create and attach a script to the root node
-> - Code, or add to the _on_ready() function with the Scene.gd script
-> - Ensure Actors entities have their places
-> - Set Stage and Actors to their own 3D Worlds
-
-<details>
-<summary><h3>Pre-requisites</h3></summary>
+ - Import external files
+ - Create scene with Node2D root node
+ - Add Sprite2D node
+ - Parent two SubViewports to the root
+   - Set their size to match the screen
+ - Add model to scene
+   - Separate components (Make Local)
+   - Attach Collision data (StaticBody3D) to Actors
+   - Move the Mesh (MeshInstance3D) data to the Stage
+ - Create Camera2D and parent to root
+   - Set Anchor Mode to Fixed Top Left 
+   - Add TextureRect as child
+   - Set TextureRect to ViewportTexture
+   - Point the ViewportTexture to the Actors Subviewport
+ - Attach a MeshInstance3D to one of the 3D cameras
+   - Make a new QuadMesh, set size to 2m
+   - Make a new Shader Material
+   - To Stage/Camera/Aperture create and code the Translate_Depth.gdshader
+   - To Actors/Camera/Aperture create and code the Scene_Compositor.gdshader
+ - Create and attach a script to the root node
+ - Code, or add to the _on_ready() function with the Scene.gd script
+ - Ensure Actors entities have their places
+ - Set Stage and Actors to their own 3D Worlds
+		</details>
+		<details>
+			<summary><h4>Pre-requisites</h4></summary>
 
 You will need a 3D character with a script to handle movement. There is a simple Capsule supplied however you will need to bind your own keys to actions: move_forward,move_backward,move_left and move_right, for it to function.
-</details>
-
-<details>
-<summary><h3>Procedure</h3></summary>
+		</details>
+		<details>
+			<summary><h4>Procedure</h4></summary>
 
 In Godot we can import our Blender files, Scene.png and Scene.glb. (And a 3D character, one is supplied if you don't have one readily available.) From here we should create a new scene and set the root as Node2D(*).
 
@@ -88,11 +87,11 @@ Now we need to look again at our 3D Cameras and to either add a MeshInstance3D a
 
 We will create two Shaders to linearlize the depth texture, and on one composite it into one image. First we begin with the Actors/Camera/Aperture.
 
-<blockquote>
-<details>
-<summary><b>Translate_Depth.gdshader</b></summary>
-<table>
-  <tbody>
+		<blockquote>
+			<details>
+				<summary><b>Translate_Depth.gdshader</b></summary>
+				<table>
+  					<tbody>
     
 ```
 shader_type spatial;
@@ -129,18 +128,18 @@ void fragment(){
 }
 
 ```
-</tbody>
-</table>
-</details>
-</blockquote>
+					</tbody>
+				</table>
+			</details>
+		</blockquote>
 
 And, on to the Actors/Camera/Aperture we follow the same routine however we make a new shader: the Scene_Compositor.gdshader.
 
-<blockquote>
-<details>
-<summary><b>Scene_Compositor.gdshader</b></summary>
-<table>
-  <tbody>
+		<blockquote>
+			<details>
+				<summary><b>Scene_Compositor.gdshader</b></summary>
+					<table>
+						<tbody>
     
 ```
 shader_type spatial;
@@ -187,20 +186,20 @@ void fragment(){
 	}
 }
 ```
-</tbody>
-</table>
-</details>
-</blockquote>
+						</tbody>
+					</table>
+				</details>
+			</blockquote>
 
 You can see that there is not much difference between the two, but the second one composites where the other just translates Godots' depth texture.
 
 There is only one last script we need to make; on the root node attach a script. The function will, on Scene instantiation read the depth texture from the Stage and send that, and the Backdrop image, to the Compositor shader.
 
-<blockquote>
-<details>
-<summary><b>Scene.gd</b></summary>
-<table>
-  <tbody>
+		<blockquote>
+			<details>
+				<summary><b>Scene.gd</b></summary>
+				<table>
+  					<tbody>
     
 ```
 extends Node2D
@@ -211,11 +210,12 @@ func _ready() -> void:
 	$Actors/Camera/Aperture.material_override.set_shader_parameter("GEOMETRY",stage_set)
 
 ```
-</tbody>
-</table>
-</details>
-</blockquote>
+					</tbody>
+				</table>
+			</details>
+		</blockquote>
 
 With this done we can add our Player, props and other interactables to Actors to be properly occluded. Before finally setting the Stage and Actors into their Own World 3D. You will need to toggle Own World 3D to visually adjust and positions.
-</details>
+		</details>
+	</details>
 </details>
