@@ -54,29 +54,29 @@ The depth image is generated once and used throughout the lifetime of the scene.
 		<details>
 			<summary><h3><ul><li>Outline</li></ul></h3></summary>
 
- - Import external files
- - Create scene with Node2D root node
- - Add Sprite2D node
- - Parent two SubViewports to the root
-   - Set their size to match the screen
- - Add model to scene
-   - Separate components (Make Local)
-   - Attach Collision data (StaticBody3D) to Actors
-   - Move the Mesh (MeshInstance3D) data to the Stage
- - Create Camera2D and parent to root
-   - Set Anchor Mode to Fixed Top Left 
-   - Add TextureRect as child
-   - Set TextureRect to ViewportTexture
-   - Point the ViewportTexture to the Actors Subviewport
- - Attach a MeshInstance3D to one of the 3D cameras
-   - Make a new QuadMesh, set size to 2m
-   - Make a new Shader Material
-   - To Stage/Camera/Aperture create and code the Translate_Depth.gdshader
-   - To Actors/Camera/Aperture create and code the Scene_Compositor.gdshader
- - Create and attach a script to the root node
- - Code, or add to the _on_ready() function with the Scene.gd script
- - Ensure Actors entities have their places
- - Set Stage and Actors to their own 3D Worlds
+- Import external files
+- Create scene with Node2D root node
+- Add Sprite2D node
+- Parent two SubViewports to the root
+	- Set their size to match the screen
+- Add model to scene
+	- Separate components (Make Local)
+	- Attach Collision data (StaticBody3D) to Actors
+	- Move the Mesh (MeshInstance3D) data to the Stage
+- Create Camera2D and parent to root
+	- Set Anchor Mode to Fixed Top Left 
+	- Add TextureRect as child
+	- Set TextureRect to ViewportTexture
+	- Point the ViewportTexture to the Actors Subviewport
+- Attach a MeshInstance3D to one of the 3D cameras
+- Make a new QuadMesh, set size to 2m
+	- Make a new Shader Material
+	- To Stage/Camera/Aperture create and code the Translate_Depth.gdshader
+	- To Actors/Camera/Aperture create and code the Scene_Compositor.gdshader
+- Create and attach a script to the root node
+- Code, or add to the _on_ready() function with the Scene.gd script
+- Ensure Actors entities have their places
+- Set Stage and Actors to their own 3D Worlds
 		</details>
 		<details>
    			<summary><h3><ul><li>Pre-requisites</li></ul></h3></summary>
