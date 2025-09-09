@@ -312,7 +312,7 @@ With this done we can add our Player, props and other interactables to Actors to
 
 <td width="33%"><img src="pictures/Godot022.png" /></td>
 
-Now we have a lightweight scene that loads a depth map on load. Well done! Gl;hf.
+Now we have a lightweight scene that loads a depth map on entry. Well done! Gl;hf.
 		</details>
 	</details>
 </details>
