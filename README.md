@@ -2,7 +2,7 @@
 
 This project presents a method of overlaying 3D Actors with a static pre-rendered background. Giving a similar effect to the early Resident Evil games. However, with this method we can go infront of and behind objects in a scene easily.
 
-#### <p align="center">"That's the Second Biggest Monkey Head I've Ever Seen!"</p>
+## <p align="center">"That's the Second Biggest Monkey Head I've Ever Seen!"</p>
 <table>
 <tr>
   <td>
