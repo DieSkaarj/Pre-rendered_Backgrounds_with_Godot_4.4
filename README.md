@@ -124,6 +124,13 @@ The Meshes (named Suzanne and Cube in this example) are attached to the Stage. I
 
 To complete our base hierarchy we add a Camera2D node to the root, and a TextureRect to that. Using the Inspector we attach a ViewportTexture and set that to the Actors Subviewport. Before we move on, select the Camera2D and set the Anchor Mode to Fixed Top Left in the properties pael.
 
+<table align="center">
+	<tr>
+		<td width="33%"><img src="pictures/Godot018.png" /></td>
+		<td width="67%"><img src="pictures/Godot019.png" /></td>
+	</tr>
+</table>
+
 Now we need to look again at our 3D Cameras and to either add a MeshInstance3D and name it Aperture. We need to do this for both but we will begin with one, on the Stage. The properties of the MeshInstance3D should be a New QuadMesh that is doubled in size to fill the screen. To this new QuadMesh add a Material Override that is set to a New ShaderMaterial.
 
 <table align="center">
@@ -135,14 +142,6 @@ Now we need to look again at our 3D Cameras and to either add a MeshInstance3D a
 </table>
 
 We will create two Shaders to linearlize the depth texture. However one will composite the textures into one image.
-
-<table align="center">
-	<tr>
-		<td width="33%"><img src="pictures/Godot016.png" /></td>
-		<td width="34%"><img src="pictures/Godot015.png" /></td>
-		<td width="33%"><img src="pictures/Godot017.png" /></td>
-	</tr>
-</table>
 
 We begin with the Actors/Camera/Aperture.
 
@@ -249,6 +248,13 @@ void fragment(){
 </details>
 </blockquote>
 
+<table align="center">
+	<tr>
+		<td width="50%"><img src="pictures/Godot016.png" /></td>
+		<td width="50%"><img src="pictures/Godot015.png" /></td>
+	</tr>
+</table>
+
 You can see that there is not much difference between the two, but the second one composites where the other just translates Godots' depth texture.
 
 There is only one last script we need to make; on the root node attach a script. The function will, on Scene instantiation read the depth texture from the Stage and send that, and the Backdrop image, to the Compositor shader.
@@ -270,6 +276,12 @@ func _ready() -> void:
 </table>
 </details>
 </blockquote>
+
+<table align="center">
+	<tr>
+		<td width="100%"><img src="pictures/Godot017.png" /></td>
+	</tr>
+</table>
 
 With this done we can add our Player, props and other interactables to Actors to be properly occluded. Before finally setting the Stage and Actors into their Own World 3D. You will need to toggle Own World 3D to visually adjust and positions.
 		</details>
