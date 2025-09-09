@@ -18,7 +18,9 @@ This project presents a method of overlaying 3D Actors with a static pre-rendere
 
 ## Considerations and Motivations
 
-Blender and Godot, at the time of writing, have disparity when it comes to their depth/z-pass and this makes results inconsistent when using a Blender generated depth map in Godot. To mitigate this we can use Godot's own depth textures to generate a LoD texture when the scene starts. We can use this as a reference for our own depth calculations. While overlaying a static image similar to scenes in games like Resident Evil, Final Fantasy and Escape from Monkey Island. The image is generated once and used throughout the lifetime of the scene. With this in mind scenes can be more complex as they are rendered as a static image requiring little to no updating, depending on your implementation and use of lighting.
+Blender and Godot, at the time of writing, have disparity when it comes to their depth/z-pass and this makes results inconsistent when using a Blender generated depth map in Godot. To mitigate this we can use Godot's own depth textures to generate a LoD texture when the scene starts. We can use this as a reference for our own depth calculations. While overlaying a static image similar to scenes in games like Resident Evil, Final Fantasy and Escape from Monkey Island.
+
+The depth image is generated once and used throughout the lifetime of the scene. With this in mind scenes can be more complex as they are rendered as a static image requiring little to no updating, depending on your implementation and use of lighting.
 
 <details>
 	<summary><h2>Method</h2></summary>
