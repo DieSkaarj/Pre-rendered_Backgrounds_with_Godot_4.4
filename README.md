@@ -27,14 +27,14 @@ The depth image is generated once and used throughout the lifetime of the scene.
 	<details>
 		<summary><h3><blockquote>Blender</blockquote></h3></summary>
 		<details>
-  			<summary><h4>Overview</h4></summary>
+  			<summary><h3><ul><li>Outline</li></ul></h3></summary>
 
 - Create scene
 - Render scene and save to file
 - Export scene, with camera, to .glb (glTF 2.0)  
 		</details>
 		<details>
-  			<summary><h4>Procedure</h4></summary>
+  			<summary><h3><ul><li>Procedure</li></ul></h3></summary>
 			<table>
 			<tr >
 				<td width="33%" align="center"><img src="pictures/Blender000.png" /></td>
@@ -52,7 +52,7 @@ The depth image is generated once and used throughout the lifetime of the scene.
 	<details>
 		<summary><h3><blockquote>Godot</blockquote></h3></summary>
 		<details>
-			<summary><h4>Overview</h4></summary>
+			<summary><h3><ul><li>Outline</li></ul></h3></summary>
 
  - Import external files
  - Create scene with Node2D root node
@@ -79,18 +79,30 @@ The depth image is generated once and used throughout the lifetime of the scene.
  - Set Stage and Actors to their own 3D Worlds
 		</details>
 		<details>
-			<summary><h4>Pre-requisites</h4></summary>
-
+   			<summary><h3><ul><li>Pre-requisites</li></ul></h3></summary>
 You will need a 3D character with a script to handle movement. There is a simple Capsule supplied (see: *../Example/Files/Godot/Player Data/Player.tscn*) however you will need to bind your own keys to actions: move_forward,move_backward,move_left and move_right, for it to function with the Player script (see: *../Example/Files/Godot/Player Data/Player.gd*.)
+
+<table>
+	<tr>
+		<td width="100%"><img src="pictures/Godot023.png" /></td>
+	</tr>
+</table>
 		</details>
 		<details>
-			<summary><h4>Procedure</h4></summary>
-
-##### Import
+			<summary><h3><ul><li>Procedure</li></ul></h3></summary>
+<details>
+<summary><h4><ul><ul><li>Import Assets</li></ul></ul></h4></summary>
 
 In Godot we can import our Blender files, Scene.png and Scene.glb. (And a 3D character, one is supplied if you don't have one readily available.) From here we should create a new scene and set the root as Node2D(*).
+<table>
+	<tr>
+		<td width="100%"><img src="pictures/Godot024.png" /></td>
+	</tr>
+</table>
+</details>
 
-##### Set Backdrop Up
+<details>
+<summary><h4><ul><ul><li>Create Backdrop</li></ul></ul></h4></summary>
 
 The first meta-layer we use will be the Backdrop. For this, create a new Sprite2D node attached to the root (or just drag 'n' drop the .png into the scene,) and set it to the backdrop image. Next, configure it so that the Offset/Centered is Off and set the Transform to (0,0) in world space.
 
@@ -100,8 +112,9 @@ The first meta-layer we use will be the Backdrop. For this, create a new Sprite2
 		<td width="33%"><img src="pictures/Godot002.png" /></td>
 	</tr>
 </table>
-
-##### SubViewport Setup
+</details>
+<details>
+<summary><h4><ul><ul><li>SubViewport Setup</li></ul></ul></h4></summary>
 
 We have our painted backdrop in place. We now need to set the Stage for the actors. So, add two SubViewports to the root node. I have named them Stage and Actors respectively, and they'll be called this from here onwards. We need to resize both the Stage and Actors nodes to the size of our screen.
 
@@ -111,8 +124,9 @@ We have our painted backdrop in place. We now need to set the Stage for the acto
 		<td width="33%"><img src="pictures/Godot005.png" /></td>
 	</tr>
 </table>
-
-##### Arrange Blender Scene
+</details>
+<details>
+<summary><h4><ul><ul><li>Arrange Blender Scene</li></ul></ul></h4></summary>
 
 Once we have the containers we need our model available to the scene.  The simplest way to achieve this is to drag and drop it into the root node, Node2D. For an easy collision model we can, on import, generate physics for our mesh. We then need to separate the components and reparent them by bringing up the right-click menu and selecting Make Local. 
 
@@ -135,8 +149,9 @@ The Meshes (named Suzanne and Cube in this example) are attached to the Stage. I
 		<td width="33%"><img src="pictures/Godot011.png" /></td>
 	</tr>
 </table>
-
-##### Scene Camera
+</details>
+<details>
+<summary><h4><ul><ul><li>Scene Camera</li></ul></ul></h4></summary>
 
 To complete our base hierarchy we add a Camera2D node to the root, and a TextureRect to that. Using the Inspector we attach a ViewportTexture and set that to the Actors Subviewport. Before we move on, select the Camera2D and set the Anchor Mode to Fixed Top Left in the properties pael.
 
@@ -146,8 +161,9 @@ To complete our base hierarchy we add a Camera2D node to the root, and a Texture
 		<td width="67%"><img src="pictures/Godot019.png" /></td>
 	</tr>
 </table>
-
-##### Own World 3D Cameras Setup
+</details>
+<details>
+<summary><h4><ul><ul><li>Own World 3D Cameras Setup</li></ul></ul></h4></summary>
 
 Now we need to look again at our 3D Cameras and to either add a MeshInstance3D and name it Aperture. We need to do this for both but we will begin with one, on the Stage. The properties of the MeshInstance3D should be a New QuadMesh that is doubled in size to fill the screen. To this new QuadMesh add a Material Override that is set to a New ShaderMaterial.
 
@@ -158,8 +174,9 @@ Now we need to look again at our 3D Cameras and to either add a MeshInstance3D a
 		<td width="33%"><img src="pictures/Godot012.png" /></td>
 	</tr>
 </table>
-
-##### Define Shaders
+</details>
+<details>
+<summary><h4><ul><ul><li>Define Shaders</li></ul></ul></h4></summary>
 
 We will create two Shaders to linearlize the depth texture. However one will composite the textures into one image.
 
@@ -276,8 +293,9 @@ void fragment(){
 </table>
 
 You can see that there is not much difference between the two, but the second one composites where the other just translates Godots' depth texture.
-
-##### Scene Script and Initialization
+</details>
+<details>
+<summary><h4><ul><ul><li>Scene Script and Initialization</li></ul></ul></h4></summary>
 
 There is only one last script we need to make; on the root node attach a script. The function will, on Scene instantiation read the depth texture from the Stage and send that, and the Backdrop image, to the Compositor shader.
 		<blockquote>
@@ -304,8 +322,9 @@ func _ready() -> void:
 		<td width="100%"><img src="pictures/Godot017.png" /></td>
 	</tr>
 </table>
-
-##### Final Considerations
+</details>
+<details>
+<summary><h4><ul><ul><li>Final Considerations</li></ul></ul></h4></summary>
 
 <table align="center">
 	<tr>
@@ -323,6 +342,7 @@ On both the Stage and Actors properties set the Own World 3D option to on.
 Now we have a lightweight scene that loads a depth map on entry.
 
 Well done! Gl;hf.
+</details>
 		</details>
 	</details>
 </details>
