@@ -26,6 +26,7 @@ Using Blender we create the set for our Scene and arrange a camera to view it wi
   - Attach Collision data (StaticBody3D) to Actors
   - Move the Mesh (MeshInstance3D) data to the Stage
 - Create Camera2D and parent to root
+  - Set Anchor Mode to Fixed Top Left 
   - Add TextureRect as child
   - Set TextureRect to ViewportTexture
   - Point the ViewportTexture to the Actors Subviewport
@@ -38,6 +39,10 @@ Using Blender we create the set for our Scene and arrange a camera to view it wi
   - Code, or add to the _on_ready() function with the Scene.gd script
 - Ensure Actors entities have their places
 - Set Stage and Actors to their own 3D Worlds
+
+### Pre-requisites
+
+You will need a 3D character with a script to handle movement. There is a simple Capsule supplied however you will need to bind your own keys to actions: move_forward,move_backward,move_left and move_right, for it to function.
 
 ### Procedure
 
@@ -53,7 +58,7 @@ For an easy collision model we can take the StaticBody3D nodes from the Blender 
 
 The Meshes (named Suzanne and Cube in this example) are attached to the Stage. This is all the data we need from the model. However there is a loose Node3D that can be safely removed from our project.
 
-To complete our base hierarchy we add a Camera2D node to the root, and a TextureRect to that. Using the Inspector we attach a ViewportTexture and set that to the Actors Subviewport.
+To complete our base hierarchy we add a Camera2D node to the root, and a TextureRect to that. Using the Inspector we attach a ViewportTexture and set that to the Actors Subviewport. Before we move on, select the Camera2D and set the Anchor Mode to Fixed Top Left in the properties pael.
 
 Now we need to look again at our 3D Cameras and to either add a MeshInstance3D and name it Aperture, this will be a short lived template that we can copy to the other. The properties of the MeshInstance3D should be a New QuadMesh that is doubled in size to fill the screen. To this new QuadMesh add a Material Override that is set to a New ShaderMaterial. Finally copy the MeshInstance3D (renamed to Aperture) to the other 3D Camera.
 
