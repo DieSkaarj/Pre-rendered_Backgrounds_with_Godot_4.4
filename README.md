@@ -84,24 +84,74 @@ In Godot we can import our Blender files, Scene.png and Scene.glb. (And a 3D cha
 
 The first meta-layer we use will be the Backdrop. For this, create a new Sprite2D node attached to the root (or just drag 'n' drop the .png into the scene,) and set it to the backdrop image. Next, configure it so that the Offset/Centered is Off and set the Transform to (0,0) in world space.
 
-We have our painted backdrop in place. We now need to set the Stage for the actors. So, add two SubViewports to the root node. I have named them Stage and Actors respectively, and they'll be reference as this from this point onwards. We need to resize both the Stage and Actors nodes to the size of our screen.
+<table>
+	<tr>
+		<td width="66%"><img src="pictures/Godot000.png" /></td>
+		<td width="33%"><img src="pictures/Godot002.png" /></td>
+	</tr>
+</table>
 
-Once we have the containers we need our model available to the scene.  The simplest way to achieve this is to drag and drop it into the root node, Node2D. We then need to separate the components and reparent them by bringing up the right-click menu and selecting Make Local. With the individual parts available we reparent the Camera to the Stage, and make a copy that is parented to the Actors SubViewport.
+We have our painted backdrop in place. We now need to set the Stage for the actors. So, add two SubViewports to the root node. I have named them Stage and Actors respectively, and they'll be called this from here onwards. We need to resize both the Stage and Actors nodes to the size of our screen.
 
-For an easy collision model we can take the StaticBody3D nodes from the Blender scene and parent them to the Actors node, renaming them for easy reference.
+<table>
+	<tr>
+		<td width="66%"><img src="pictures/Godot001.png" /></td>
+		<td width="33%"><img src="pictures/Godot005.png" /></td>
+	</tr>
+</table>
 
-The Meshes (named Suzanne and Cube in this example) are attached to the Stage. This is all the data we need from the model. However there is a loose Node3D that can be safely removed from our project.
+Once we have the containers we need our model available to the scene.  The simplest way to achieve this is to drag and drop it into the root node, Node2D. For an easy collision model we can, on import, generate physics for our mesh. We then need to separate the components and reparent them by bringing up the right-click menu and selecting Make Local. 
+
+<table>
+	<tr>
+		<td width="60%"><img src="pictures/Godot006.png" /></td>
+		<td width="20%"><img src="pictures/Godot008.png" /></td>
+		<td width="20%"><img src="pictures/Godot007.png" /></td>
+	</tr>
+</table>
+
+With the individual parts available we reparent the Camera to the Stage, and make a copy that is parented to the Actors SubViewport.
+
+The Meshes (named Suzanne and Cube in this example) are attached to the Stage. If you want to use the collision data from the model attach the StaticBody3D(s) to the Actors SubViewport. This is all the data we need from the model. However there is a loose Node3D (Scene) that can be safely removed from our project.
+
+<table align="center">
+	<tr>
+		<td width="33%"><img src="pictures/Godot009.png" /></td>
+		<td width="34%"><img src="pictures/Godot010.png" /></td>
+		<td width="33%"><img src="pictures/Godot011.png" /></td>
+	</tr>
+</table>
 
 To complete our base hierarchy we add a Camera2D node to the root, and a TextureRect to that. Using the Inspector we attach a ViewportTexture and set that to the Actors Subviewport. Before we move on, select the Camera2D and set the Anchor Mode to Fixed Top Left in the properties pael.
 
-Now we need to look again at our 3D Cameras and to either add a MeshInstance3D and name it Aperture, this will be a short lived template that we can copy to the other. The properties of the MeshInstance3D should be a New QuadMesh that is doubled in size to fill the screen. To this new QuadMesh add a Material Override that is set to a New ShaderMaterial. Finally copy the MeshInstance3D (renamed to Aperture) to the other 3D Camera.
+Now we need to look again at our 3D Cameras and to either add a MeshInstance3D and name it Aperture. We need to do this for both but we will begin with one, on the Stage. The properties of the MeshInstance3D should be a New QuadMesh that is doubled in size to fill the screen. To this new QuadMesh add a Material Override that is set to a New ShaderMaterial.
 
-We will create two Shaders to linearlize the depth texture, and on one composite it into one image. First we begin with the Actors/Camera/Aperture.
-		<blockquote>
-			<details>
-				<summary><b>Translate_Depth.gdshader</b></summary>
-				<table>
-  					<tbody>
+<table align="center">
+	<tr>
+		<td width="33%"><img src="pictures/Godot014.png" /></td>
+		<td width="34%"><img src="pictures/Godot004.png" /></td>
+		<td width="33%"><img src="pictures/Godot012.png" /></td>
+	</tr>
+</table>
+
+We will create two Shaders to linearlize the depth texture. However one will composite the textures into one image.
+
+<table align="center">
+	<tr>
+		<td width="33%"><img src="pictures/Godot016.png" /></td>
+		<td width="34%"><img src="pictures/Godot015.png" /></td>
+		<td width="33%"><img src="pictures/Godot017.png" /></td>
+	</tr>
+</table>
+
+We begin with the Actors/Camera/Aperture.
+
+<blockquote>
+	<details>
+		<summary><b>Translate_Depth.gdshader</b></summary>
+		<table>
+			<tbody>
+ 
 ```
 
 shader_type spatial;
