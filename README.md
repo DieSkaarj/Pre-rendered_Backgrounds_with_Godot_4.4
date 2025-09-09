@@ -312,11 +312,15 @@ func _ready() -> void:
 	</tr>
 </table>
 
-With this done we can add our Player, props and other interactables to Actors to be properly occluded. (I also added a light that will interact with the Actors.) With consideration being made to their placement within the scene. As when they populate their Own World 3D they will not be visible in the editor viewport. Which leads us to the final step. On both the Stage and Actors properties set the Own World 3D option to on.
+With this done we can add our Player, props and other interactables to Actors to be properly occluded. (I also added a light that will interact with the Actors.) With consideration being made to their placement within the scene. As when they populate their Own World 3D they will not be visible in the editor viewport. Which leads us to the final step.
+
+On both the Stage and Actors properties set the Own World 3D option to on.
 
 <td width="33%"><img src="pictures/Godot022.png" /></td>
 
-Now we have a lightweight scene that loads a depth map on entry. Well done! Gl;hf.
+Now we have a lightweight scene that loads a depth map on entry.
+
+Well done! Gl;hf.
 		</details>
 	</details>
 </details>
