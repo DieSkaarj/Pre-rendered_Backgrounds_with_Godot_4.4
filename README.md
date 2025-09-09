@@ -16,6 +16,10 @@ This project presents a method of overlaying 3D Actors with a static pre-rendere
 
 > *The files available are for illustrative purposes only.*
 
+## Considerations and Motivations
+
+Blender and Godot, at the time of writing, has a disparity when it comes to their depth/z-pass and this makes results inconsistent when using a Blender generated depth map in Godot. To mitigate this we can use Godot's own depth textures to generate a LoD texture when the scene starts and reference that as our depth map while overlaying a static image. The image is generated once and used throughout the lifetime of the scene. With this in mind scenes can be more complex as they are rendered as a static image requiring little to no updating, depending on your implementation.
+
 <details>
 	<summary><h2>Method</h2></summary>
 	<details>
