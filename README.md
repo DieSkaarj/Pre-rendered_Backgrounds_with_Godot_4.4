@@ -30,10 +30,10 @@ This project presents a method of overlaying 3D Actors with a static pre-rendere
 		<details>
   			<summary><h4>Procedure</h4></summary>
 			<table>
-			<tr>
-			  <td><img src="pictures/Blender000.png" /></td>
-				  <td><img src="pictures/Blender001.png" /></td>
-			  <td><img src="pictures/Blender002.png" /></td>
+			<tr >
+				<td width="33%" align="center"><img src="pictures/Blender000.png" /></td>
+				<td width="33%" align="center"><img src="pictures/Blender001.png" /></td>
+				<td width="33%" align="center"><img src="pictures/Blender002.png" /></td>
 			</tr>
 			<tr>
 				<td>Using Blender we create the set for our Scene and arrange a camera to view it with (see: *../Example/Files/Blender/Scene.blend*.)</td>
