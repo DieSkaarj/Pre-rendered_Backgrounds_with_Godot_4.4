@@ -228,6 +228,8 @@ mesh = SubResource("ArrayMesh_kjurs")
 skeleton = NodePath("")
 
 [node name="Actors" type="SubViewport" parent="."]
+own_world_3d = true
+transparent_bg = true
 size = Vector2i(1920, 1080)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Actors"]
@@ -266,7 +268,7 @@ shape = SubResource("ConcavePolygonShape3D_8svus")
 anchor_mode = 0
 zoom = Vector2(0.6, 0.6)
 
-[node name="Film" type="TextureRect" parent="Camera"]
+[node name="Composite" type="TextureRect" parent="Camera"]
 offset_right = 1920.0
 offset_bottom = 1082.0
 texture = SubResource("ViewportTexture_t6lng")
