@@ -29,7 +29,18 @@ This project presents a method of overlaying 3D Actors with a static pre-rendere
 		</details>
 		<details>
   			<summary><h4>Procedure</h4></summary>
-Using Blender we create the set for our Scene and arrange a camera to view it with (see: *../Example/Files/Blender/Scene.blend*.) We render the scene and save it, a .PNG should be fine, as this will be the Backdrop to our node in Godot. The Blender file, including the Camera data, must also be exported as .glTF 2.0 file for use in Godot. Finally, ensure the scene is saved for future reference.
+			<table>
+			<tr>
+			  <td><img src="pictures/Blender000.png" /></td>
+				  <td><img src="pictures/Blender001.png" /></td>
+			  <td><img src="pictures/Blender002.png" /></td>
+			</tr>
+			<tr>
+				<td>Using Blender we create the set for our Scene and arrange a camera to view it with (see: *../Example/Files/Blender/Scene.blend*.)</td>
+				<td>We render the scene and save it. A .PNG will be fine. This will be the Backdrop to our node in Godot.</td>
+				<td>The Blender scene, including the Camera data, should also be exported as .glTF 2.0 file for use in Godot.</td>
+			</tr>
+			</table>
 		</details>
 	</details>
 	<details>
