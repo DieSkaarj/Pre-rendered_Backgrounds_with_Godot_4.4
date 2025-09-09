@@ -1,4 +1,4 @@
-# That's the second biggest Monkey Head I've ever seen!
+# That's the Second Biggest Monkey Head I've Ever Seen!
 <table>
 <tr>
   <td>
