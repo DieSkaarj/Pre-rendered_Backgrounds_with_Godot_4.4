@@ -80,7 +80,11 @@ You will need a 3D character with a script to handle movement. There is a simple
 		<details>
 			<summary><h4>Procedure</h4></summary>
 
+##### Import
+
 In Godot we can import our Blender files, Scene.png and Scene.glb. (And a 3D character, one is supplied if you don't have one readily available.) From here we should create a new scene and set the root as Node2D(*).
+
+##### Set Backdrop Up
 
 The first meta-layer we use will be the Backdrop. For this, create a new Sprite2D node attached to the root (or just drag 'n' drop the .png into the scene,) and set it to the backdrop image. Next, configure it so that the Offset/Centered is Off and set the Transform to (0,0) in world space.
 
@@ -91,6 +95,8 @@ The first meta-layer we use will be the Backdrop. For this, create a new Sprite2
 	</tr>
 </table>
 
+##### SubViewport Setup
+
 We have our painted backdrop in place. We now need to set the Stage for the actors. So, add two SubViewports to the root node. I have named them Stage and Actors respectively, and they'll be called this from here onwards. We need to resize both the Stage and Actors nodes to the size of our screen.
 
 <table>
@@ -99,6 +105,8 @@ We have our painted backdrop in place. We now need to set the Stage for the acto
 		<td width="33%"><img src="pictures/Godot005.png" /></td>
 	</tr>
 </table>
+
+##### Arrange Blender Scene
 
 Once we have the containers we need our model available to the scene.  The simplest way to achieve this is to drag and drop it into the root node, Node2D. For an easy collision model we can, on import, generate physics for our mesh. We then need to separate the components and reparent them by bringing up the right-click menu and selecting Make Local. 
 
@@ -122,6 +130,8 @@ The Meshes (named Suzanne and Cube in this example) are attached to the Stage. I
 	</tr>
 </table>
 
+##### Scene Camera
+
 To complete our base hierarchy we add a Camera2D node to the root, and a TextureRect to that. Using the Inspector we attach a ViewportTexture and set that to the Actors Subviewport. Before we move on, select the Camera2D and set the Anchor Mode to Fixed Top Left in the properties pael.
 
 <table align="center">
@@ -130,6 +140,8 @@ To complete our base hierarchy we add a Camera2D node to the root, and a Texture
 		<td width="67%"><img src="pictures/Godot019.png" /></td>
 	</tr>
 </table>
+
+##### Own World 3D Cameras Setup
 
 Now we need to look again at our 3D Cameras and to either add a MeshInstance3D and name it Aperture. We need to do this for both but we will begin with one, on the Stage. The properties of the MeshInstance3D should be a New QuadMesh that is doubled in size to fill the screen. To this new QuadMesh add a Material Override that is set to a New ShaderMaterial.
 
@@ -140,6 +152,8 @@ Now we need to look again at our 3D Cameras and to either add a MeshInstance3D a
 		<td width="33%"><img src="pictures/Godot012.png" /></td>
 	</tr>
 </table>
+
+##### Define Shaders
 
 We will create two Shaders to linearlize the depth texture. However one will composite the textures into one image.
 
@@ -257,6 +271,8 @@ void fragment(){
 
 You can see that there is not much difference between the two, but the second one composites where the other just translates Godots' depth texture.
 
+##### Scene Script and Initialization
+
 There is only one last script we need to make; on the root node attach a script. The function will, on Scene instantiation read the depth texture from the Stage and send that, and the Backdrop image, to the Compositor shader.
 		<blockquote>
 			<details>
@@ -283,7 +299,20 @@ func _ready() -> void:
 	</tr>
 </table>
 
-With this done we can add our Player, props and other interactables to Actors to be properly occluded. Before finally setting the Stage and Actors into their Own World 3D. You will need to toggle Own World 3D to visually adjust and positions.
+##### Final Considerations
+
+<table align="center">
+	<tr>
+		<td width="33%"><img src="pictures/Godot020.png" /></td>
+		<td width="34%"><img src="pictures/Godot021.png" /></td>
+	</tr>
+</table>
+
+With this done we can add our Player, props and other interactables to Actors to be properly occluded. With consideration being made to their placement within the scene. As when they populate their Own World 3D they will not be visible in the editor viewport. Which leads us to the final step. On both the Stage and Actors properties set the Own World 3D option to on.
+
+<td width="33%"><img src="pictures/Godot022.png" /></td>
+
+Now we have a lightweight scene that loads a depth map on load. Well done! Gl;hf.
 		</details>
 	</details>
 </details>
