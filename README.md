@@ -14,7 +14,12 @@ This project presents a method of overlaying a static pre-rendered background wi
 	</tr>
 </table>
 
-> *The files available are for illustrative purposes only.*
+> **The files available are for illustrative purposes only.*
+>
+> Folders:
+> - |   **Examples/Files**   -   *Contains import/export files for this tutorial*
+> - |   **pictures**   -   *Images used throughout this repository*
+> - |   **pre-rendered-backgrounds**   -   *The completed example project*
 
 ## Considerations and Motivations
 
